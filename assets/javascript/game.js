@@ -26,11 +26,13 @@
 
     };
 
-    // function resetGame () {
+    function resetGame () {
 
-    // //for-loop to iterate through the letters array
-    // for (var i = 0; i < letters.length; i++) {
+    //for-loop to iterate through the letters array
+    for (var i = 0; i < letters.length; i++) {
 
-    //     currentWord.push("_");
+        currentWord.push("_");
 
-    // };
+    };
+
+};
