@@ -9,17 +9,17 @@
 
     var number = Math.floor(Math.random() * wordBank.length);
 
-
-    var number = Math.floor(Math.random() * wordBank.length);
-
     var currentWord = wordBank[number];
+    console.log(currentWord);
     
     var wordLength = currentWord.length;
-    console.log(wordLength);
-
-    var wordDashes = wordLength;
+    document.getElementById("#letters").innerHTML = "_";
 
     function resetGame () {
+
+
+
+};
 
     document.onkeyup = function(event) {
         var userGuess = event.key;
@@ -32,16 +32,6 @@
             "<p>Losses: " + losses + "</p>";
   
         document.querySelector("#stats").innerHTML = html;
-
-        // document.querySelector("#letters").innerHTML = wordDashes;
-    };
-
-
-//     //for-loop to iterate through the letters array
-//     for (var i = 0; i < letters.length; i++) {
-
-//         currentWord.push("_");
-
 
 };
     resetGame();
