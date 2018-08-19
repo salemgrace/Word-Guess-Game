@@ -3,13 +3,29 @@
     box-sizing: border-box;
 }
 body {
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-image: url(../images/carbon_fibre_big.png);
+}
+
+p {
+    margin-left: 30px;
 }
 
 html, body {
     height: 100%;
     margin: 0; 
+}
+
+h1, h3 {
+    font-family: 'Merriweather', serif;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+h4 {
+    font-size: 18px;
 }
 
 .container {
@@ -41,10 +57,6 @@ header {
 
 
 /* Main Content */
-#main-container {
-    
-}
-
 .game {
     float: left;
     width: 100%;
@@ -55,19 +67,14 @@ header {
 }
 
 #stats {
-    border: 3px solid pink;
+    border: 3px solid #1a1a1a;;
     margin: 20px;
     padding: 20px;
 }
 
- .letters {
-    display: inline-block;
-    width: 20px;
-    margin: 0 5px;
-    border-bottom: 1px solid pink;
-    text-align: center;
-    color: #808080;
+ #letters {
     padding-left: 40px;
+    padding-top: 20px;
 }
 
 

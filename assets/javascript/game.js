@@ -1,8 +1,10 @@
     // Initial Variables
-    var wordBank = ["rock", "paper", "scissors"];
+    var wordBank = ["mezzanine", "proscenium", "director", "actor", "dramaturg", "ensemble", "crew", 
+        "blocking", "tech", "aside", "backdrop", "flyrail", "masking", "scrim"];
 
     var maxGuess = 10;
     var guessArray = [];
+    var userGuessArray = [];
 
     var wins = 0;
     var losses = 0;
@@ -30,10 +32,11 @@
 };
 
     document.onkeyup = function(event) {
-        var userGuess = event.key;
-        console.log(userGuess);
+        userGuessArray = event.key;
+        console.log(userGuessArray);
         
-        document.getElementById("letters-guessed").innerHTML = guessArray;
+        document.getElementById("letters-guessed").innerHTML = userGuessArray;
+
         
         // var html =
         //     "<p>Letters guessed so far: " + userGuess + "</p>" +
