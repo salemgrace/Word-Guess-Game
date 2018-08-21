@@ -1,13 +1,12 @@
     // Initial Variables
+    var gameStarted = false;
+
     var wordBank = ["mezzanine", "proscenium", "director", "actor", "dramaturg", "ensemble", "crew", 
-        "blocking", "tech", "aside", "backdrop", "flyrail", "masking", "scrim"];
+    "blocking", "tech", "aside", "backdrop", "flyrail", "masking", "scrim"];
 
     var maxGuess = 10;
     var guessArray = [];
     var userGuessArray = [];
-
-    var wins = 0;
-    var losses = 0;
 
     var dashes;
 
@@ -15,7 +14,21 @@
 
     var currentWord = wordBank[number];
     console.log(currentWord);
+
+    var wins = 0;
+    var losses = 0;
     
+    document.onkeyup = function(event) {
+        if (gameStarted) {
+            console.log("Game is already underway");
+
+        } else {
+            document.getElementById("game-info").textContent = XXX;
+            gameStarted = true;
+        }
+
+    }
+
 
     function resetGame () {
 
@@ -47,4 +60,5 @@
         // document.querySelector("#stats").innerHTML = html;
 
 };
+
     resetGame();
