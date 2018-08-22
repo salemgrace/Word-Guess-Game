@@ -1,5 +1,6 @@
     // Initial Variables
     var gameStarted = false;
+    var gameOver = false;
 
     var wordBank = ["mezzanine", "proscenium", "director", "actor", "dramaturg", "ensemble", "crew", 
     "blocking", "tech", "aside", "backdrop", "flyrail", "masking", "scrim"];
@@ -12,8 +13,7 @@
     var dashes = 0;
 
     var currentWord = "";
-
-    var wordInProgress = "";
+    var lettersInCurrentWord = "";
 
     var wins = 0;
     var losses = 0;
@@ -25,7 +25,7 @@
             guessArray = event.key;
             console.log(guessArray);
 
-
+        
         } else {
             beginGame ();
         }
@@ -33,28 +33,24 @@
     }
 
     function beginGame () {
-        document.getElementById("game-info").textContent = "Game has started";
+        document.getElementById("game-info").textContent = "What word am I thinking of?";
         gameStarted = true;
 
         currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
         dashes = currentWord.length;
 
-        wordInProgress = currentWord.split(" ");
+        lettersInCurrentWord = currentWord.split(" ");
         
-        for ( var i = 0; i < wordInProgress.length; i++) {
-            currentWord[i] = "_";
+        for ( var i = 0; i < currentWord.length; i++) {
+            lettersInCurrentWord[i] = "_";
         }
 
-        dashes = currentWord.join(" ");
+        dashes = lettersInCurrentWord.join(" ");
         document.getElementById("word-to-guess").innerHTML = dashes;
-        document.getElementById("game-info").textContent = currentWord.join(" ");
-
-    }
-
-
-    document.onkeyup = function(event) {
-
+        document.getElementById("word-to-guess").innerHTML = lettersInCurrentWord.join(" ");
         
-        document.getElementById("letters-guessed").innerHTML = userGuessArray;
+        guessArray.push(event.key);
+        document.getElementById("letters-guessed").innerHTML = guessArray.join(" ");
 
-};
+
+    };
