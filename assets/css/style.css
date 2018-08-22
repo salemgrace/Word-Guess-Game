@@ -20,11 +20,15 @@ h1, h3 {
     font-family: 'Merriweather', serif;
 }
 
-h2, h3 {
+h2, h3, h4 {
     text-align: center;
 }
 
 h4 {
+    padding-top: 10px;
+}
+
+h5 {
     font-size: 18px;
 }
 
@@ -72,7 +76,7 @@ header {
     padding: 20px;
 }
 
- #letters {
+ #word-to-guess {
     padding-left: 40px;
     padding-top: 20px;
 }

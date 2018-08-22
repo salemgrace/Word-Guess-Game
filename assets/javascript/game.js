@@ -5,15 +5,15 @@
     "blocking", "tech", "aside", "backdrop", "flyrail", "masking", "scrim"];
 
     var maxGuess = 10;
+
     var guessArray = [];
-    var userGuessArray = [];
+    var wrongGuessesArray = [];
 
-    var dashes;
+    var dashes = 0;
 
-    var number = Math.floor(Math.random() * wordBank.length);
+    var currentWord = "";
 
-    var currentWord = wordBank[number];
-    console.log(currentWord);
+    var wordInProgress = "";
 
     var wins = 0;
     var losses = 0;
@@ -21,44 +21,40 @@
     document.onkeyup = function(event) {
         if (gameStarted) {
             console.log("Game is already underway");
+            
+            guessArray = event.key;
+            console.log(guessArray);
+
 
         } else {
-            document.getElementById("game-info").textContent = XXX;
-            gameStarted = true;
+            beginGame ();
         }
 
     }
 
+    function beginGame () {
+        document.getElementById("game-info").textContent = "Game has started";
+        gameStarted = true;
 
-    function resetGame () {
+        currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+        dashes = currentWord.length;
 
-        for ( var i = 0; i < currentWord.length; i++)
-
-        {
-            guessArray[i] = "_";
+        wordInProgress = currentWord.split(" ");
+        
+        for ( var i = 0; i < wordInProgress.length; i++) {
+            currentWord[i] = "_";
         }
 
-        dashes = guessArray.join(" ");
-        document.getElementById("letters").innerHTML = dashes;
+        dashes = currentWord.join(" ");
+        document.getElementById("word-to-guess").innerHTML = dashes;
+        document.getElementById("game-info").textContent = currentWord.join(" ");
 
+    }
 
-};
 
     document.onkeyup = function(event) {
-        userGuessArray = event.key;
-        console.log(userGuessArray);
+
         
         document.getElementById("letters-guessed").innerHTML = userGuessArray;
 
-        
-        // var html =
-        //     "<p>Letters guessed so far: " + userGuess + "</p>" +
-        //     "<p>Gueses remaining: " + maxGuess + "</p>" +
-        //     "<p>Wins: " + wins + "</p>" +
-        //     "<p>Losses: " + losses + "</p>";
-  
-        // document.querySelector("#stats").innerHTML = html;
-
 };
-
-    resetGame();
