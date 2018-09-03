@@ -1,94 +1,128 @@
-    // Initial Variables
-    var gameStarted = false;
-    var gameOver = false;
+// Initial Variables
 
-    var wordBank = ["mezzanine", "proscenium", "director", "actor", "dramaturg", "ensemble", "crew", 
+var wordBank = ["mezzanine", "proscenium", "director", "actor", "dramaturg", "ensemble", "crew", 
     "blocking", "tech", "aside", "backdrop", "flyrail", "masking", "scrim"];
 
-    var currentWord = "";
-    var lettersInCurrentWord = [];
-    var currentLettersAndBlanks = [];
+// Computer selected word
+var currentWord = "";
 
-    var dashes = 0;
+// breaks computer selected word into individual letters
+var lettersInCurrentWord = [];
 
-    var wrongGuessesArray = [];
-    var lettersGuessed = "";
+// Holds the mix of blanks and accurate letters guessed in computer selected word
+var currentLettersAndBlanks = [];
+
+// Number of dashes/blanks in current word
+var dashes = 0;
+
+// Holds all the wrongly guessed letters
+var wrongGuessesArray = [];
+
+// Holds every letter guessed
+var lettersGuessed = "";
     
-    var maxGuess = 10;
-    var wins = 0;
-    var losses = 0;
-    
-    document.onkeyup = function(event) {
-        if (gameStarted) {
-            console.log("Game is already underway");
-            
-            guessArray = event.key;
-            console.log(guessArray);
+// Max guesses and win/loss counters
+var maxGuess = 10;
+var wins = 0;
+var losses = 0;
 
+
+function beginGame() {
         
-        } else {
-            beginGame ();
-        }
+    document.getElementById("game-info").textContent = "What word am I thinking of?";
 
+    maxGuess = 10;
+        
+    currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+
+    lettersInCurrentWord = currentWord.split("");
+        
+    dashes = lettersInCurrentWord.length;
+        
+    console.log(currentWord);
+
+    currentLettersAndBlanks = [];
+
+    wrongGuessesArray = [];
+
+    for ( var i = 0; i < dashes; i++) {
+        currentLettersAndBlanks.push("_");
     }
 
-    function beginGame () {
+    console.log(currentLettersAndBlanks);
+    
+    document.getElementById("remaining-guesses").innerHTML = maxGuess;
 
-        maxGuess = 10;
+    document.getElementById("word-to-guess").innerHTML = currentLettersAndBlanks.join(" ");
         
-        currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+    document.getElementById("letters-guessed").innerHTML = wrongGuessesArray.join(" ");
+}
 
-        lettersInCurrentWord = currentWord.split(" ");
-        
-        dashes = currentWord.length;
-        
-        console.log(currentWord);
 
-        currentLettersAndBlanks = [];
+function checkLetters(letter) {
+    
+    var letterInWord = false;
 
-        wrongGuessesArray = [];
+    for (var i = 0; i < dashes; i++) {
 
-        for ( var i = 0; i < currentWord.length; i++) {
-            lettersInCurrentWord[i] = "_";
+        if (currentWord[i] === letter) {
+                
+            letterInWord = true;
         }
-
-        document.getElementById("game-info").textContent = "What word am I thinking of?";
-        gameStarted = true;
-        
-        dashes = lettersInCurrentWord.join(" ");
-        document.getElementById("word-to-guess").innerHTML = dashes;
-        document.getElementById("word-to-guess").innerHTML = lettersInCurrentWord.join(" ");
-        
-        guessArray.push(event.key);
-        document.getElementById("letters-guessed").innerHTML = guessArray.join(" ");
-
     }
 
-    function checkLetters(letter) {
-        var letterinWord = false;
+    if (letterInWord) {
 
-        for (var i = 0; i < dashes; i++) {
-            if (wordbank[i] === letter) {
-                letterInWord = true;
-            }
-        }
+        for (var j = 0; j < dashes; j++) {
 
-        if (letterinWord) {
+            if (currentWord[j] === letter) {
 
-            for (var j = 0; j < dashes; j++) {
-                if (wordBank[j] === letter) {
                 currentLettersAndBlanks[j] = letter;
-                }
-            }
+            } 
         }
 
-    }
+        console.log(currentLettersAndBlanks);
+    }    
+    
+    else {
 
+        wrongGuessesArray.push(letter);
+
+        maxGuess--;
+    }
+}  
+
+
+function roundComplete() {
+
+    document.getElementById("remaining-guesses").innerHTML = maxGuess;
+
+    document.getElementById("word-to-guess").innerHTML = currentLettersAndBlanks.join(" ");
+
+    document.getElementById("letters-guessed").innerHTML = wrongGuessesArray.join(" ");
+
+    if (lettersInCurrentWord.toString() === currentLettersAndBlanks.toString()) {
+
+        wins++;
+
+        document.getElementById("total-wins").innerHTML = wins;
+
+        beginGame();
+
+    } else if (maxGuess === 0) {
+        
+        losses++;
+
+        document.getElementById("total-losses").innerHTML = losses;
+
+        beginGame();
+    }
+}
 
 beginGame();
 
 document.onkeyup = function(event) {
-    lettersGuessed = String.fromCharCode(event.which).toLocaleLowerCase();
+    lettersGuessed = String.fromCharCode(event.which).toLowerCase();
 
     checkLetters(lettersGuessed);
 
