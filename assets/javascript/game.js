@@ -1,4 +1,5 @@
 // Initial Variables
+var gameStarted = false;
 
 var wordBank = ["mezzanine", "proscenium", "director", "actor", "dramaturg", "ensemble", "crew", 
     "blocking", "tech", "aside", "backdrop", "flyrail", "masking", "scrim"];
@@ -56,6 +57,7 @@ function beginGame() {
     document.getElementById("word-to-guess").innerHTML = currentLettersAndBlanks.join(" ");
         
     document.getElementById("letters-guessed").innerHTML = wrongGuessesArray.join(" ");
+
 }
 
 
@@ -119,12 +121,21 @@ function roundComplete() {
     }
 }
 
-beginGame();
-
 document.onkeyup = function(event) {
-    lettersGuessed = String.fromCharCode(event.which).toLowerCase();
 
-    checkLetters(lettersGuessed);
+    if (!gameStarted) {
+        
+        beginGame();
 
-    roundComplete();
+        gameStarted = true;
+
+    } else if (gameStarted) {
+
+        lettersGuessed = String.fromCharCode(event.which).toLowerCase();
+
+        checkLetters(lettersGuessed);
+
+        roundComplete();
+
+    }
 };
