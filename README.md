@@ -1,9 +1,6 @@
 # Word-Guess-Game
-Third Assignment
 
 Link to project: https://salemgrace.github.io/Word-Guess-Game/
-
-# JavaScript Assignment for UPenn Coding Bootcamp
 
 ### Overview
 
